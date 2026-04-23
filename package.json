@@ -1,0 +1,49 @@
+{
+  "name": "neuroz.ai",
+  "version": "0.1.1",
+  "description": "Unified Node.js-first AI training framework with pluggable TFJS, NLP.js, and ONNX Runtime backends.",
+  "type": "module",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "author":"zuzia.dev",
+  "scripts": {
+    "clean": "node -e \"import('node:fs/promises').then(fs => fs.rm('dist', { recursive: true, force: true }))\"",
+    "build": "npm run clean && tsc -p tsconfig.json"
+  },
+  "keywords": [
+    "ai",
+    "ml",
+    "training",
+    "nodejs",
+    "tfjs",
+    "onnx",
+    "nlp"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@tensorflow/tfjs": "^4.22.0",
+    "node-nlp": "^5.0.0-alpha.5"
+  },
+  "optionalDependencies": {
+    "@tensorflow/tfjs-node": "^4.22.0",
+    "onnxruntime-node": "^1.24.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.7.2",
+    "tsx": "^4.19.4",
+    "typescript": "^5.9.3"
+  }
+}
