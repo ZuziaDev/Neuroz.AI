@@ -1,4 +1,8 @@
-# neuroz.ai
+<p align="center">
+  <img src="./assets/neuroz-ai-banner.svg" alt="Neuroz.AI banner" width="960" />
+</p>
+
+# Neuroz.AI
 
 Unified, Node.js-first AI training and inference framework with pluggable `tfjs`, `node-nlp`, and `onnxruntime-node` backends.
 
