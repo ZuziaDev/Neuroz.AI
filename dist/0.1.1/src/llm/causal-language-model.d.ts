@@ -1,0 +1,30 @@
+import type { ModelRecord } from "../core/types.js";
+import { ModelRegistry } from "../registry/model-registry.js";
+import { ArtifactStore } from "../storage/artifact-store.js";
+import { TextTokenizer } from "../text/tokenizer.js";
+import type { TrainerRunResult } from "../trainer/types.js";
+import type { TfjsModelConfig } from "../backends/tfjs/types.js";
+import type { CausalLanguageModelSaveOptions, CausalLanguageModelTrainOptions, CreateCausalLanguageModelOptions, GenerateTextOptions, GenerateTextResult } from "./types.js";
+export declare class CausalLanguageModel {
+    private readonly store;
+    private readonly registry;
+    readonly id: string;
+    readonly task: string;
+    readonly sequenceLength: number;
+    readonly embeddingDim: number;
+    readonly hiddenUnits: number;
+    readonly dropoutRate: number;
+    readonly recurrentLayerType: "lstm" | "gru";
+    readonly tags: string[];
+    readonly tokenizer: TextTokenizer;
+    private tfjsModel?;
+    private trainer;
+    constructor(store: ArtifactStore, registry: ModelRegistry, options: CreateCausalLanguageModelOptions);
+    static load(store: ArtifactStore, registry: ModelRegistry, record: ModelRecord<TfjsModelConfig>): Promise<CausalLanguageModel>;
+    train(texts: readonly string[], options?: CausalLanguageModelTrainOptions): Promise<TrainerRunResult>;
+    generate(prompt: string, options?: GenerateTextOptions): Promise<GenerateTextResult>;
+    save(options: CausalLanguageModelSaveOptions): Promise<ModelRecord<TfjsModelConfig>>;
+    private isInitialized;
+    private requireModel;
+    private createTfjsModel;
+}
